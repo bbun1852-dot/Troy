@@ -1,0 +1,414 @@
+/* ================= 히어로 ================= */
+.hero {
+  background: linear-gradient(180deg, var(--color-primary-soft) 0%, #fff 70%);
+  padding-block: var(--space-8);
+}
+
+.hero__inner {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: var(--space-7);
+  align-items: center;
+}
+
+.hero__badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  background: #fff;
+  border: 1px solid var(--color-border);
+  color: var(--color-primary);
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-medium);
+  padding: 6px 12px;
+  border-radius: var(--radius-full);
+  box-shadow: var(--shadow-sm);
+}
+.hero__badge .icon {
+  width: 18px;
+  height: 18px;
+}
+
+.hero__title {
+  margin-top: var(--space-4);
+  font-size: var(--fs-4xl);
+  line-height: 1.15;
+}
+.hero__title-accent {
+  color: var(--color-primary);
+}
+
+.hero__lead {
+  margin-top: var(--space-4);
+  color: var(--color-sub);
+  font-size: var(--fs-lg);
+  max-width: 46ch;
+}
+
+/* 입력 폼 */
+.quest-form {
+  margin-top: var(--space-5);
+  background: #fff;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-5);
+  box-shadow: var(--shadow-md);
+}
+.quest-form__row {
+  display: flex;
+  gap: var(--space-4);
+}
+.field {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+.field__label {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-2);
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-medium);
+  color: var(--color-sub);
+}
+
+/* 라벨 옆 보조 설명 (예: 공제 전 총급여) */
+.field__hint {
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-body);
+  font-style: normal;
+  color: var(--color-primary);
+  background: var(--color-primary-soft);
+  padding: 1px 6px;
+  border-radius: var(--radius-full);
+}
+
+/* 세전 기준 안내 문구 */
+.quest-form__note {
+  margin-top: var(--space-3);
+  font-size: var(--fs-xs);
+  line-height: 1.6;
+  color: var(--color-sub);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  padding: var(--space-3);
+}
+.quest-form__note b {
+  color: var(--color-text);
+}
+.field__control {
+  display: flex;
+  align-items: center;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 0 var(--space-3);
+  background: var(--color-surface);
+  transition: border-color 0.15s ease, background 0.15s ease;
+}
+.field__control:focus-within {
+  border-color: var(--color-primary);
+  background: #fff;
+}
+.field__control input {
+  flex: 1;
+  border: none;
+  background: transparent;
+  outline: none;
+  font: inherit;
+  font-weight: var(--fw-medium);
+  padding: 12px 0;
+  color: var(--color-text);
+  min-width: 0;
+}
+.field__suffix {
+  color: var(--color-sub);
+  font-size: var(--fs-sm);
+}
+
+/* 세부 조건 셀렉트 */
+.field__select {
+  flex: 1;
+  border: none;
+  background: transparent;
+  outline: none;
+  font: inherit;
+  font-weight: var(--fw-medium);
+  color: var(--color-text);
+  padding: 12px 0;
+  cursor: pointer;
+  min-width: 0;
+}
+
+/* 무주택 체크박스 */
+.quest-form__check {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin-top: var(--space-4);
+  font-size: var(--fs-sm);
+  color: var(--color-sub);
+  cursor: pointer;
+}
+.quest-form__check input {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--color-primary);
+  cursor: pointer;
+}
+
+/* 두 번째 조건 행 간격 */
+.quest-form__row + .quest-form__row {
+  margin-top: var(--space-4);
+}
+
+.quest-form__submit {
+  width: 100%;
+  margin-top: var(--space-4);
+}
+
+.hero__note {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin-top: var(--space-3);
+  color: var(--color-sub);
+  font-size: var(--fs-sm);
+}
+.hero__note .icon {
+  width: 16px;
+  height: 16px;
+}
+
+/* 진로 검사 진입 CTA */
+.hero__career {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  margin-top: var(--space-4);
+  padding: var(--space-4);
+  background: #fff;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  transition:
+    border-color 0.15s ease,
+    box-shadow 0.15s ease,
+    transform 0.1s ease;
+}
+.hero__career:hover {
+  border-color: var(--color-primary);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-1px);
+}
+.hero__career-emoji {
+  font-size: 28px;
+  line-height: 1;
+}
+.hero__career-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  flex: 1;
+}
+.hero__career-text b {
+  font-size: var(--fs-base);
+  font-weight: var(--fw-heading);
+  color: var(--color-text);
+}
+.hero__career-text em {
+  font-style: normal;
+  font-size: var(--fs-sm);
+  color: var(--color-sub);
+}
+.hero__career > .icon {
+  color: var(--color-primary);
+  flex-shrink: 0;
+}
+
+/* 미리보기 카드 */
+.hero__preview {
+  display: flex;
+  justify-content: center;
+}
+.preview-card {
+  width: 100%;
+  max-width: 360px;
+  background: #fff;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  padding: var(--space-5);
+}
+.preview-card__head {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-weight: var(--fw-heading);
+  font-size: var(--fs-sm);
+  color: var(--color-text);
+}
+.preview-gauge {
+  margin-top: var(--space-4);
+  height: 12px;
+  border-radius: var(--radius-full);
+  background: var(--color-border);
+  overflow: hidden;
+}
+.preview-gauge__fill {
+  height: 100%;
+  border-radius: var(--radius-full);
+  background: var(--color-primary);
+}
+.preview-gauge__labels {
+  display: flex;
+  justify-content: space-between;
+  margin-top: var(--space-2);
+  font-size: var(--fs-xs);
+  color: var(--color-sub);
+}
+.preview-list {
+  margin-top: var(--space-4);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+.preview-list li {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--fs-sm);
+  color: var(--color-text);
+}
+.preview-list .icon {
+  width: 18px;
+  height: 18px;
+  color: var(--color-primary);
+}
+.tag {
+  margin-left: auto;
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-heading);
+  color: var(--color-primary);
+  background: var(--color-primary-soft);
+  padding: 2px 8px;
+  border-radius: var(--radius-full);
+}
+.tag--green {
+  color: #059669;
+  background: #ecfdf5;
+}
+
+/* ================= 공통 섹션 헤더 ================= */
+.section__title {
+  font-size: var(--fs-2xl);
+  text-align: center;
+}
+.section__sub {
+  text-align: center;
+  color: var(--color-sub);
+  margin-top: var(--space-2);
+}
+
+/* ================= 기능 카드 ================= */
+.features__grid {
+  margin-top: var(--space-6);
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-4);
+}
+.feature-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-5);
+}
+.feature-card__icon {
+  display: inline-flex;
+  padding: var(--space-3);
+  border-radius: var(--radius-md);
+  background: var(--color-primary-soft);
+  color: var(--color-primary);
+}
+.feature-card__title {
+  margin-top: var(--space-4);
+  font-size: var(--fs-lg);
+}
+.feature-card__desc {
+  margin-top: var(--space-2);
+  color: var(--color-sub);
+  font-size: var(--fs-sm);
+}
+
+/* ================= 이용 방법 ================= */
+.how {
+  background: var(--color-surface);
+  border-block: 1px solid var(--color-border);
+}
+.how__grid {
+  margin-top: var(--space-6);
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-5);
+}
+.how__step {
+  text-align: center;
+}
+.how__num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-full);
+  background: var(--color-primary);
+  color: #fff;
+  font-weight: var(--fw-heading);
+  font-size: var(--fs-lg);
+}
+.how__step-title {
+  margin-top: var(--space-3);
+  font-size: var(--fs-lg);
+}
+.how__step-desc {
+  color: var(--color-sub);
+  font-size: var(--fs-sm);
+  margin-top: var(--space-1);
+}
+
+/* ================= 하단 CTA ================= */
+.cta__inner {
+  text-align: center;
+}
+.cta__title {
+  font-size: var(--fs-2xl);
+}
+.cta__sub {
+  color: var(--color-sub);
+  margin-top: var(--space-2);
+  margin-bottom: var(--space-5);
+}
+
+/* ================= 반응형 ================= */
+@media (max-width: 900px) {
+  .hero__inner {
+    grid-template-columns: 1fr;
+  }
+  .hero__preview {
+    order: -1;
+  }
+  .features__grid,
+  .how__grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 520px) {
+  .hero__title {
+    font-size: var(--fs-3xl);
+  }
+  .quest-form__row {
+    flex-direction: column;
+  }
+}

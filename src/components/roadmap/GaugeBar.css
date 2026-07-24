@@ -1,0 +1,95 @@
+.gauge {
+  background: #fff;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-5);
+  box-shadow: var(--shadow-sm);
+}
+
+.gauge__headline {
+  font-size: var(--fs-lg);
+  font-weight: var(--fw-medium);
+}
+.gauge__accent {
+  color: var(--color-primary);
+  font-weight: var(--fw-heading);
+}
+
+.gauge__bar {
+  position: relative;
+  margin-top: var(--space-5);
+  margin-bottom: var(--space-6);
+  height: 16px;
+  background: var(--color-border);
+  border-radius: var(--radius-full);
+}
+.gauge__fill {
+  height: 100%;
+  background: linear-gradient(90deg, #60a5fa, var(--color-primary));
+  border-radius: var(--radius-full);
+  transition: width 0.5s ease;
+}
+
+/* 또래 평균 위치 마커 */
+.gauge__marker {
+  position: absolute;
+  top: -6px;
+  bottom: -6px;
+  width: 2px;
+  background: var(--color-text);
+  transform: translateX(-1px);
+}
+.gauge__marker-label {
+  position: absolute;
+  top: -22px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-heading);
+  color: var(--color-text);
+  white-space: nowrap;
+}
+
+.gauge__stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-4);
+}
+.gauge__stat {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: var(--space-3);
+  background: var(--color-surface);
+  border-radius: var(--radius-md);
+}
+.gauge__stat-label {
+  font-size: var(--fs-xs);
+  color: var(--color-sub);
+}
+.gauge__stat-value {
+  font-size: var(--fs-lg);
+  font-weight: var(--fw-heading);
+  color: var(--color-primary);
+}
+.gauge__stat-value--sub {
+  color: var(--color-text);
+}
+.gauge__rate {
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-body);
+  color: var(--color-sub);
+  font-style: normal;
+}
+
+.gauge__disclaimer {
+  margin-top: var(--space-4);
+  font-size: var(--fs-xs);
+  color: var(--color-sub);
+}
+
+@media (max-width: 640px) {
+  .gauge__stats {
+    grid-template-columns: 1fr;
+  }
+}

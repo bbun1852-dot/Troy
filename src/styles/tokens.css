@@ -1,0 +1,71 @@
+/* =========================================================
+   디자인 토큰 (Design Tokens)
+   - 레시피 "정확한 값 준수" 항목을 CSS 변수로 전역 정의한다.
+   - 아래 [베이스 기본] 값은 레시피에 명시된 값 그대로다. 임의 변경 금지.
+   ========================================================= */
+:root {
+  /* ---- 색 조합 [베이스 기본] ---- */
+  --color-primary: #3b82f6;
+  --color-text: #1f2937;
+  --color-sub: #6b7280;
+  --color-bg: #ffffff;
+  --color-surface: #f9fafb;
+  --color-border: #e5e7eb;
+
+  /* ---- 버튼 [베이스 기본] ---- */
+  --btn-radius: 10px;
+  --btn-padding-y: 12px;
+  --btn-padding-x: 20px;
+  --btn-weight: 700;
+
+  /* ---- 폰트 [베이스 기본] ---- */
+  --font-family: 'Inter', 'Apple SD Gothic Neo', 'Malgun Gothic', 'Segoe UI',
+    sans-serif;
+  --fw-body: 400;
+  --fw-medium: 500;
+  --fw-heading: 700;
+
+  /* ---- 아이콘 [베이스 기본] ---- */
+  --icon-size: 24px;
+  --icon-stroke: 1.5;
+
+  /* ---- 파생 토큰 [베이스 확장] : 위 기본값과 어울리도록 추가 ---- */
+  /* primary 파생 (hover/연한 배경) */
+  --color-primary-hover: #2563eb;
+  --color-primary-soft: #eff6ff;
+
+  /* 반경 스케일 */
+  --radius-sm: 8px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --radius-full: 999px;
+
+  /* 간격 스케일 (4px 기반) */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+
+  /* 그림자 */
+  --shadow-sm: 0 1px 2px rgba(16, 24, 40, 0.05);
+  --shadow-md: 0 4px 16px rgba(16, 24, 40, 0.08);
+  --shadow-lg: 0 12px 32px rgba(16, 24, 40, 0.12);
+
+  /* 폰트 크기 스케일 */
+  --fs-xs: 12px;
+  --fs-sm: 14px;
+  --fs-base: 16px;
+  --fs-lg: 18px;
+  --fs-xl: 22px;
+  --fs-2xl: 28px;
+  --fs-3xl: 36px;
+  --fs-4xl: 48px;
+
+  /* 레이아웃 */
+  --container: 1120px;
+  --header-h: 64px;
+}

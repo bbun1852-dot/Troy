@@ -1,0 +1,442 @@
+/* ============ 공통 히어로 ============ */
+.career__hero {
+  background: linear-gradient(180deg, var(--color-primary-soft) 0%, #fff 100%);
+  padding-block: var(--space-8);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.career__badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  background: #fff;
+  border: 1px solid var(--color-border);
+  color: var(--color-primary);
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-medium);
+  padding: 6px 12px;
+  border-radius: var(--radius-full);
+  box-shadow: var(--shadow-sm);
+}
+.career__badge .icon {
+  width: 18px;
+  height: 18px;
+}
+
+.career__title {
+  margin-top: var(--space-4);
+  font-size: var(--fs-3xl);
+  line-height: 1.2;
+}
+.career__title-accent {
+  color: var(--color-primary);
+}
+
+.career__lead {
+  margin-top: var(--space-4);
+  color: var(--color-sub);
+  font-size: var(--fs-lg);
+  max-width: 52ch;
+}
+
+.career__points {
+  margin-top: var(--space-5);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+.career__points li {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  color: var(--color-text);
+  font-size: var(--fs-sm);
+}
+.career__points .icon {
+  width: 18px;
+  height: 18px;
+  color: var(--color-primary);
+  flex-shrink: 0;
+}
+
+.career__intro > button,
+.career__intro > .btn {
+  margin-top: var(--space-6);
+}
+
+.career__disclaimer {
+  margin-top: var(--space-4);
+  font-size: var(--fs-xs);
+  color: var(--color-sub);
+}
+
+/* ============ 검사 진행 ============ */
+.career__quiz {
+  max-width: 640px;
+}
+
+.quiz__progress-wrap {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+.quiz__progress {
+  flex: 1;
+  height: 8px;
+  background: var(--color-border);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+}
+.quiz__progress-fill {
+  height: 100%;
+  background: var(--color-primary);
+  border-radius: var(--radius-full);
+  transition: width 0.3s ease;
+}
+.quiz__count {
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-heading);
+  color: var(--color-sub);
+}
+
+.quiz__type {
+  margin-top: var(--space-6);
+  font-size: var(--fs-sm);
+  color: var(--color-sub);
+  font-weight: var(--fw-medium);
+}
+.quiz__question {
+  margin-top: var(--space-2);
+  font-size: var(--fs-2xl);
+  line-height: 1.4;
+}
+
+.quiz__options {
+  margin-top: var(--space-6);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+.quiz__option {
+  text-align: left;
+  padding: 18px var(--space-5);
+  border: 1px solid var(--color-border);
+  border-radius: var(--btn-radius);
+  background: #fff;
+  font-size: var(--fs-lg);
+  font-weight: var(--fw-medium);
+  color: var(--color-text);
+  transition:
+    border-color 0.15s ease,
+    background 0.15s ease,
+    transform 0.05s ease;
+}
+.quiz__option:hover {
+  border-color: var(--color-primary);
+  background: var(--color-primary-soft);
+}
+.quiz__option:active {
+  transform: translateY(1px);
+}
+.quiz__option--active {
+  border-color: var(--color-primary);
+  background: var(--color-primary-soft);
+  color: var(--color-primary);
+  font-weight: var(--fw-heading);
+}
+
+.quiz__back {
+  margin-top: var(--space-5);
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  border: none;
+  background: transparent;
+  color: var(--color-sub);
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-medium);
+}
+.quiz__back:hover {
+  color: var(--color-text);
+}
+.quiz__back .icon {
+  width: 16px;
+  height: 16px;
+}
+
+/* ============ 결과 ============ */
+.result__eyebrow {
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-heading);
+  color: var(--color-primary);
+}
+.result__title {
+  margin-top: var(--space-2);
+  font-size: var(--fs-3xl);
+  line-height: 1.25;
+}
+.result__tagline {
+  font-size: var(--fs-xl);
+  color: var(--color-sub);
+  font-weight: var(--fw-medium);
+}
+.result__desc {
+  margin-top: var(--space-4);
+  color: var(--color-sub);
+  max-width: 56ch;
+}
+
+.result__strengths {
+  margin-top: var(--space-4);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+.result__strength {
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-heading);
+  color: var(--color-primary);
+  background: #fff;
+  border: 1px solid var(--color-border);
+  padding: 6px 12px;
+  border-radius: var(--radius-full);
+}
+
+/* 6유형 점수 막대 */
+.result__scores {
+  margin-top: var(--space-6);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  max-width: 460px;
+}
+.score-row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+.score-row__label {
+  width: 90px;
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-medium);
+  flex-shrink: 0;
+}
+.score-row__bar {
+  flex: 1;
+  height: 10px;
+  background: var(--color-border);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+}
+.score-row__fill {
+  height: 100%;
+  background: var(--color-primary);
+  border-radius: var(--radius-full);
+}
+.score-row__pct {
+  width: 42px;
+  text-align: right;
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-heading);
+  color: var(--color-sub);
+}
+
+.result__secondary {
+  margin-top: var(--space-5);
+  font-size: var(--fs-sm);
+  color: var(--color-sub);
+}
+.result__actions {
+  margin-top: var(--space-5);
+}
+
+.result__section-title {
+  margin-top: var(--space-6);
+  margin-bottom: var(--space-4);
+  font-size: var(--fs-xl);
+}
+
+/* 희망 근무지 */
+.career__region {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-medium);
+  color: var(--color-sub);
+  background: #fff;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 8px 14px;
+  flex-wrap: wrap;
+}
+.career__region .icon {
+  width: 18px;
+  height: 18px;
+  color: var(--color-primary);
+}
+.career__region select {
+  font: inherit;
+  font-weight: var(--fw-medium);
+  color: var(--color-text);
+  border: none;
+  background: transparent;
+  outline: none;
+  cursor: pointer;
+}
+.career__region em {
+  font-style: normal;
+  font-size: var(--fs-xs);
+  color: var(--color-sub);
+}
+
+/* ============ 직무 카드 ============ */
+.job-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-5);
+}
+.job-card {
+  background: #fff;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-5);
+}
+.job-card__title {
+  font-size: var(--fs-xl);
+}
+.job-card__summary {
+  margin-top: var(--space-2);
+  color: var(--color-sub);
+  font-size: var(--fs-sm);
+}
+.job-card__block {
+  margin-top: var(--space-5);
+  padding-top: var(--space-4);
+  border-top: 1px solid var(--color-border);
+}
+.job-card__label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: var(--fs-sm);
+  color: var(--color-text);
+  margin-bottom: var(--space-3);
+}
+.job-card__label .icon {
+  width: 16px;
+  height: 16px;
+  color: var(--color-primary);
+}
+
+.job-steps {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  font-size: var(--fs-sm);
+  color: var(--color-text);
+  list-style: none;
+  padding: 0;
+}
+.job-steps li {
+  padding: 10px var(--space-3);
+  background: var(--color-surface);
+  border-radius: var(--radius-sm);
+}
+
+.job-links {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+.job-links li {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.job-links a {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-heading);
+  color: var(--color-primary);
+}
+.job-links a:hover {
+  text-decoration: underline;
+}
+.job-links a .icon {
+  width: 14px;
+  height: 14px;
+}
+.job-links__note {
+  font-size: var(--fs-xs);
+  color: var(--color-sub);
+}
+
+.job-search {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+.job-search__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-heading);
+  color: var(--color-primary);
+  border: 1px solid var(--color-border);
+  background: var(--color-surface);
+  border-radius: var(--radius-md);
+  padding: 6px 12px;
+  transition:
+    background 0.15s ease,
+    border-color 0.15s ease;
+}
+.job-search__link:hover {
+  background: var(--color-primary-soft);
+  border-color: var(--color-primary);
+}
+.job-search__link .icon {
+  width: 14px;
+  height: 14px;
+}
+.job-search__hint {
+  margin-top: var(--space-2);
+  font-size: var(--fs-xs);
+  color: var(--color-sub);
+}
+
+/* ============ 다음 단계 ============ */
+.career__next {
+  text-align: center;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-7) var(--space-5);
+}
+.career__next-title {
+  font-size: var(--fs-2xl);
+}
+.career__next-desc {
+  margin-top: var(--space-2);
+  margin-bottom: var(--space-5);
+  color: var(--color-sub);
+}
+
+/* ============ 반응형 ============ */
+@media (max-width: 900px) {
+  .job-grid {
+    grid-template-columns: 1fr;
+  }
+}
+@media (max-width: 520px) {
+  .career__title,
+  .result__title {
+    font-size: var(--fs-2xl);
+  }
+  .quiz__question {
+    font-size: var(--fs-xl);
+  }
+}

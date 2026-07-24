@@ -1,0 +1,69 @@
+/* 버튼 스타일 — 토큰 기반 [베이스 기본 준수] */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  border-radius: var(--btn-radius); /* 10px */
+  padding: var(--btn-padding-y) var(--btn-padding-x); /* 12px 20px */
+  font-weight: var(--btn-weight); /* 700 */
+  font-size: var(--fs-base);
+  line-height: 1;
+  border: 1px solid transparent;
+  transition:
+    background-color 0.15s ease,
+    color 0.15s ease,
+    border-color 0.15s ease,
+    transform 0.05s ease;
+  white-space: nowrap;
+}
+
+.btn:active {
+  transform: translateY(1px);
+}
+
+/* primary: solid Primary */
+.btn--primary {
+  background: var(--color-primary);
+  color: #fff;
+  border-color: var(--color-primary);
+}
+.btn--primary:hover {
+  background: var(--color-primary-hover);
+  border-color: var(--color-primary-hover);
+}
+
+/* outline: 테두리형 */
+.btn--outline {
+  background: transparent;
+  color: var(--color-primary);
+  border-color: var(--color-primary);
+}
+.btn--outline:hover {
+  background: var(--color-primary-soft);
+}
+
+/* ghost: 배경/테두리 없음 */
+.btn--ghost {
+  background: transparent;
+  color: var(--color-text);
+  border-color: transparent;
+}
+.btn--ghost:hover {
+  background: var(--color-surface);
+}
+
+/* 크기 */
+.btn--lg {
+  font-size: var(--fs-lg);
+  padding: 16px 28px;
+}
+
+.btn__leading {
+  display: inline-flex;
+}
+
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}

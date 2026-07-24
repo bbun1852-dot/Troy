@@ -1,0 +1,4 @@
+# SPA 라우팅 폴백 (Netlify)
+# /career, /roadmap 등에 직접 접속해도 index.html로 서빙해 404를 막는다.
+# Vercel을 쓰면 대신 vercel.json에 rewrites 설정이 필요하다.
+/*    /index.html   200
