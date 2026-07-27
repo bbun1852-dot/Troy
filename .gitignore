@@ -5,6 +5,10 @@ dist-ssr
 .env
 .env.*
 !.env.example
+.vercel
 .DS_Store
 .vscode/*
 !.vscode/extensions.json
+
+.vercel
+.env*

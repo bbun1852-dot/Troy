@@ -1,5 +1,4 @@
 User-agent: *
 Allow: /
 
-# ⚠️ 배포 도메인으로 교체하세요
-Sitemap: https://your-domain.com/sitemap.xml
+Sitemap: https://youth-roadmap.vercel.app/sitemap.xml
