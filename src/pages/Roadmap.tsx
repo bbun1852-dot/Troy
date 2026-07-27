@@ -1,6 +1,6 @@
-import { useMemo, useState, type FormEvent } from 'react'
-import { useLocation } from 'react-router-dom'
-import { RefreshCw, CheckCircle2, ExternalLink } from 'lucide-react'
+import { useEffect, useMemo, useState, type FormEvent } from 'react'
+import { useLocation, useSearchParams } from 'react-router-dom'
+import { RefreshCw, CheckCircle2, ExternalLink, Share2, Check, Copy } from 'lucide-react'
 import Button from '../components/ui/Button'
 import GaugeBar from '../components/roadmap/GaugeBar'
 import { buildRoadmap } from '../lib/roadmap'
@@ -9,6 +9,8 @@ import { REGIONS, EMPLOYMENT_OPTIONS } from '../data/regions'
 import type { Region, Employment } from '../data/regions'
 import { CATEGORY_ICON } from '../lib/categoryIcons'
 import { useSeo } from '../lib/useSeo'
+import { isSupabaseConfigured } from '../lib/supabase'
+import { saveSharedRoadmap, loadSharedRoadmap } from '../lib/sharedRoadmap'
 import './Roadmap.css'
 
 /** 홈에서 넘어온 입력값. 없으면 기본값으로 시작. */
@@ -50,9 +52,66 @@ export default function Roadmap() {
 
   const roadmap = useMemo(() => buildRoadmap(applied), [applied])
 
+  // 공유 저장 상태
+  const [searchParams] = useSearchParams()
+  const [shareUrl, setShareUrl] = useState('')
+  const [saving, setSaving] = useState(false)
+  const [copied, setCopied] = useState(false)
+
+  // 공유링크로 들어온 경우(?share=id) 저장된 조건을 불러와 그대로 재현
+  useEffect(() => {
+    const shareId = searchParams.get('share')
+    if (!shareId) return
+    let alive = true
+    loadSharedRoadmap(shareId).then((saved) => {
+      if (!alive || !saved) return
+      setAge(String(saved.age))
+      setSalary(String(saved.salary))
+      setRegion(saved.region as Region | '')
+      setEmployment(saved.employment as Employment | '')
+      setNoHome(saved.noHome)
+      setApplied({
+        age: saved.age,
+        salary: saved.salary,
+        region: saved.region as Region | '',
+        employment: saved.employment as Employment | '',
+        noHome: saved.noHome,
+      })
+    })
+    return () => {
+      alive = false
+    }
+  }, [searchParams])
+
   function handleApply(e: FormEvent) {
     e.preventDefault()
     setApplied({ age: Number(age), salary: Number(salary), region, employment, noHome })
+    // 조건이 바뀌면 이전 공유링크는 무효 → 초기화
+    setShareUrl('')
+    setCopied(false)
+  }
+
+  // 현재 결과를 저장하고 공유링크 생성
+  async function handleShare() {
+    setSaving(true)
+    const id = await saveSharedRoadmap(applied)
+    setSaving(false)
+    if (id) {
+      setShareUrl(`${window.location.origin}/roadmap?share=${id}`)
+      setCopied(false)
+    } else {
+      alert('저장에 실패했어요. 잠시 후 다시 시도해 주세요.')
+    }
+  }
+
+  async function copyShareUrl() {
+    try {
+      await navigator.clipboard.writeText(shareUrl)
+      setCopied(true)
+      setTimeout(() => setCopied(false), 2000)
+    } catch {
+      /* 클립보드 권한 없으면 사용자가 직접 복사 */
+    }
   }
 
   return (
@@ -134,6 +193,48 @@ export default function Roadmap() {
               다시 계산
             </Button>
           </form>
+
+          {/* 결과 저장 + 공유링크 (Supabase 연결 시에만 노출) */}
+          {isSupabaseConfigured && (
+            <div className="roadmap__share">
+              {!shareUrl ? (
+                <Button
+                  variant="primary"
+                  onClick={handleShare}
+                  disabled={saving}
+                  leading={<Share2 className="icon" strokeWidth={1.5} />}
+                >
+                  {saving ? '저장 중…' : '결과 저장하고 공유하기'}
+                </Button>
+              ) : (
+                <div className="share-box">
+                  <span className="share-box__label">
+                    <Check className="icon" strokeWidth={1.5} aria-hidden />
+                    공유링크가 만들어졌어요
+                  </span>
+                  <div className="share-box__row">
+                    <input readOnly value={shareUrl} onFocus={(e) => e.target.select()} />
+                    <Button
+                      variant="outline"
+                      onClick={copyShareUrl}
+                      leading={
+                        copied ? (
+                          <Check className="icon" strokeWidth={1.5} />
+                        ) : (
+                          <Copy className="icon" strokeWidth={1.5} />
+                        )
+                      }
+                    >
+                      {copied ? '복사됨' : '복사'}
+                    </Button>
+                  </div>
+                  <p className="share-box__hint">
+                    이 링크를 열면 지금 조건의 로드맵이 그대로 다시 나와요.
+                  </p>
+                </div>
+              )}
+            </div>
+          )}
         </div>
       </section>
 

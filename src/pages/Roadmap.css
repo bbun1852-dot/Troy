@@ -74,6 +74,56 @@
   cursor: pointer;
 }
 
+/* ============ 결과 저장 + 공유 ============ */
+.roadmap__share {
+  margin-top: var(--space-5);
+}
+.share-box {
+  background: #fff;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-4);
+  box-shadow: var(--shadow-sm);
+  max-width: 560px;
+}
+.share-box__label {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: var(--fw-heading);
+  font-size: var(--fs-sm);
+  color: var(--color-primary);
+}
+.share-box__label .icon {
+  width: 16px;
+  height: 16px;
+}
+.share-box__row {
+  display: flex;
+  gap: var(--space-2);
+  margin-top: var(--space-3);
+}
+.share-box__row input {
+  flex: 1;
+  min-width: 0;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 10px var(--space-3);
+  font: inherit;
+  font-size: var(--fs-sm);
+  color: var(--color-text);
+  background: var(--color-surface);
+}
+.share-box__row input:focus {
+  outline: none;
+  border-color: var(--color-primary);
+}
+.share-box__hint {
+  margin-top: var(--space-2);
+  font-size: var(--fs-xs);
+  color: var(--color-sub);
+}
+
 /* 지역 특화 정책 배지 */
 .rm-step__region {
   font-size: var(--fs-xs);

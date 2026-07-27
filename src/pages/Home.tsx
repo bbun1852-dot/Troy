@@ -13,6 +13,8 @@ import Button from '../components/ui/Button'
 import { REGIONS, EMPLOYMENT_OPTIONS } from '../data/regions'
 import type { Region, Employment } from '../data/regions'
 import { useSeo } from '../lib/useSeo'
+import { isSupabaseConfigured } from '../lib/supabase'
+import FeedbackForm from '../components/FeedbackForm'
 import './Home.css'
 
 /** 홈 히어로에 노출할 핵심 기능 3종 (더미 소개용) */
@@ -285,6 +287,15 @@ export default function Home() {
           </a>
         </div>
       </section>
+
+      {/* ================= 사용자 피드백 ================= */}
+      {isSupabaseConfigured && (
+        <section className="section feedback-section" aria-label="의견 보내기">
+          <div className="container">
+            <FeedbackForm />
+          </div>
+        </section>
+      )}
     </>
   )
 }

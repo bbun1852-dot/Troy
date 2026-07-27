@@ -1,0 +1,112 @@
+.feedback {
+  max-width: 620px;
+  margin-inline: auto;
+  background: #fff;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-6);
+  box-shadow: var(--shadow-sm);
+}
+
+.feedback__head {
+  display: flex;
+  gap: var(--space-3);
+  align-items: flex-start;
+}
+.feedback__icon {
+  display: inline-flex;
+  padding: var(--space-3);
+  border-radius: var(--radius-md);
+  background: var(--color-primary-soft);
+  color: var(--color-primary);
+  flex-shrink: 0;
+}
+.feedback__title {
+  font-size: var(--fs-lg);
+}
+.feedback__sub {
+  margin-top: 2px;
+  color: var(--color-sub);
+  font-size: var(--fs-sm);
+}
+
+.feedback__form {
+  margin-top: var(--space-5);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+/* 별점 */
+.feedback__stars {
+  display: flex;
+  gap: var(--space-1);
+}
+.feedback__star {
+  border: none;
+  background: transparent;
+  padding: 4px;
+  color: var(--color-primary);
+  cursor: pointer;
+  line-height: 0;
+  transition: transform 0.1s ease;
+}
+.feedback__star:hover {
+  transform: scale(1.1);
+}
+.feedback__star .icon {
+  width: 26px;
+  height: 26px;
+}
+
+.feedback__textarea,
+.feedback__contact {
+  width: 100%;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-3);
+  font: inherit;
+  color: var(--color-text);
+  background: var(--color-surface);
+  resize: vertical;
+}
+.feedback__textarea:focus,
+.feedback__contact:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  background: #fff;
+}
+
+.feedback__error {
+  color: #dc2626;
+  font-size: var(--fs-sm);
+}
+
+.feedback__form .btn {
+  align-self: flex-start;
+}
+
+/* 완료 상태 */
+.feedback--done {
+  text-align: center;
+}
+.feedback--done .icon {
+  width: 44px;
+  height: 44px;
+  color: var(--color-primary);
+  margin: 0 auto var(--space-3);
+}
+.feedback--done h3 {
+  font-size: var(--fs-lg);
+}
+.feedback--done p {
+  margin-top: var(--space-2);
+  color: var(--color-sub);
+  font-size: var(--fs-sm);
+}
+
+@media (max-width: 520px) {
+  .feedback {
+    padding: var(--space-5);
+  }
+}
