@@ -1,41 +1,58 @@
 /**
- * 또래 평균 순자산 벤치마크 (가상 예시 데이터)
- * ⚠️ 실제 통계가 아니라 화면 시연용 더미 값이다. 실서비스 시 공신력 있는 통계로 교체.
+ * 연령대별 평균 소득 (실제 공식 통계)
+ *
+ * 출처: 국가데이터처(구 통계청)「2024년 임금근로일자리 소득(보수) 결과」
+ *       2026-02-23 발표 · 2024년 12월 기준 · 세전 월평균소득
+ *
+ * ⚠️ 이 통계는 연 1회 발표된다(다음 발표 시 수치 갱신 필요).
+ *    연봉은 월평균소득 × 12로 환산한 값이라 실제 계약 연봉과는 차이가 있을 수 있다.
  */
-export interface Benchmark {
-  age: number
-  /** 해당 나이의 평균 순자산 (만원) */
-  avgAssetManwon: number
+
+/** 통계 출처 표기 (화면에 그대로 노출) */
+export const BENCHMARK_SOURCE = {
+  label: '국가데이터처 「2024년 임금근로일자리 소득(보수) 결과」',
+  baseline: '2024년 12월 기준',
+  url: 'https://www.kostat.go.kr/board.es?mid=a10301010000&bid=11113',
+} as const
+
+export interface SalaryBenchmark {
+  /** 연령대 라벨 (예: '30대') */
+  label: string
+  /** 해당 연령대 하한 나이 */
+  minAge: number
+  /** 해당 연령대 상한 나이 */
+  maxAge: number
+  /** 세전 월평균소득 (만원) */
+  monthlyManwon: number
 }
 
-// 나이 → 평균 자산(만원) 앵커 포인트 (예시)
-const TABLE: Benchmark[] = [
-  { age: 24, avgAssetManwon: 1500 },
-  { age: 28, avgAssetManwon: 3700 },
-  { age: 30, avgAssetManwon: 5200 },
-  { age: 33, avgAssetManwon: 7800 },
-  { age: 36, avgAssetManwon: 11000 },
-  { age: 40, avgAssetManwon: 16000 },
-  { age: 45, avgAssetManwon: 23000 },
+/** 연령대별 세전 월평균소득 (만원) — 공식 발표 수치 그대로 */
+export const SALARY_BENCHMARKS: SalaryBenchmark[] = [
+  { label: '20대', minAge: 20, maxAge: 29, monthlyManwon: 271 },
+  { label: '30대', minAge: 30, maxAge: 39, monthlyManwon: 397 },
+  { label: '40대', minAge: 40, maxAge: 49, monthlyManwon: 469 },
+  { label: '50대', minAge: 50, maxAge: 59, monthlyManwon: 445 },
+  { label: '60대', minAge: 60, maxAge: 69, monthlyManwon: 293 },
+  { label: '70세 이상', minAge: 70, maxAge: 200, monthlyManwon: 165 },
 ]
 
-/**
- * 주어진 나이의 또래 평균 자산을 앵커 테이블에서 선형 보간해 반환한다.
- */
-export function avgAssetForAge(age: number): number {
-  const first = TABLE[0]
-  const last = TABLE[TABLE.length - 1]
-  if (age <= first.age) return first.avgAssetManwon
-  if (age >= last.age) return last.avgAssetManwon
+/** 전체 임금근로자 평균 (세전 월, 만원) */
+export const OVERALL_MONTHLY_MANWON = 375
 
-  for (let i = 0; i < TABLE.length - 1; i++) {
-    const a = TABLE[i]
-    const b = TABLE[i + 1]
-    if (age >= a.age && age <= b.age) {
-      const ratio = (age - a.age) / (b.age - a.age)
-      const value = a.avgAssetManwon + ratio * (b.avgAssetManwon - a.avgAssetManwon)
-      return Math.round(value)
-    }
-  }
-  return last.avgAssetManwon
+/**
+ * 나이가 속한 연령대의 평균 소득 정보를 반환한다.
+ * 통계 구간(10년 단위)을 그대로 쓰므로 보간하지 않는다.
+ * 구간을 벗어나면(20세 미만) 가장 가까운 구간을 쓴다.
+ */
+export function salaryBenchmarkForAge(age: number): SalaryBenchmark {
+  const found = SALARY_BENCHMARKS.find((b) => age >= b.minAge && age <= b.maxAge)
+  if (found) return found
+  return age < SALARY_BENCHMARKS[0].minAge
+    ? SALARY_BENCHMARKS[0]
+    : SALARY_BENCHMARKS[SALARY_BENCHMARKS.length - 1]
+}
+
+/** 월평균소득(만원) → 연 환산 (만원) */
+export function toAnnualManwon(monthlyManwon: number): number {
+  return monthlyManwon * 12
 }

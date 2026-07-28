@@ -86,6 +86,14 @@
   margin-top: var(--space-4);
   font-size: var(--fs-xs);
   color: var(--color-sub);
+  line-height: 1.6;
+}
+.gauge__disclaimer a {
+  color: var(--color-primary);
+  font-weight: var(--fw-medium);
+}
+.gauge__disclaimer a:hover {
+  text-decoration: underline;
 }
 
 @media (max-width: 640px) {

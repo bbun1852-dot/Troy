@@ -1,8 +1,8 @@
 /**
  * 로드맵 생성 로직
  * 나이·연봉을 입력받아 (1) 자격에 맞는 정책을 카테고리별로 필터·정렬하고
- * (2) 또래 평균 대비 예상 자산 게이지를 계산한다.
- * ⚠️ 게이지의 저축률·예상 자산은 시연용 단순 추정이며 재무 자문이 아니다.
+ * (2) 같은 연령대 평균 소득과 내 연봉을 비교하는 게이지를 계산한다.
+ * 게이지는 양쪽 모두 실제 값이다 — 내 연봉은 사용자 입력, 또래 평균은 공식 통계.
  */
 import {
   POLICIES,
@@ -11,7 +11,7 @@ import {
   type PolicyCategory,
 } from '../data/policies'
 import type { Region, Employment } from '../data/regions'
-import { avgAssetForAge } from '../data/benchmarks'
+import { salaryBenchmarkForAge, toAnnualManwon } from '../data/benchmarks'
 
 export interface RoadmapInput {
   age: number
@@ -25,14 +25,14 @@ export interface RoadmapInput {
 }
 
 export interface GaugeResult {
-  /** 또래 평균 자산 (만원) */
-  avgAsset: number
-  /** 내 예상 자산 (만원, 단순 추정) */
-  myEstimateAsset: number
-  /** 적용된 연 저축률 (0~1) */
-  savingRate: number
-  /** 예상 연 저축액 (만원) */
-  annualSaving: number
+  /** 비교 기준 연령대 라벨 (예: '30대') */
+  bracketLabel: string
+  /** 내 세전 연봉 (만원) — 사용자 입력값 */
+  mySalary: number
+  /** 같은 연령대 평균 연봉 (만원) — 월평균소득 × 12 */
+  avgSalary: number
+  /** 같은 연령대 평균 월소득 (만원) — 통계 원값 */
+  avgMonthly: number
   /** 또래 평균 대비 비율 (%) */
   percentOfAvg: number
 }
@@ -75,23 +75,18 @@ export function isEligible(policy: Policy, input: RoadmapInput): boolean {
   return true
 }
 
-/** 연봉 구간별 예상 저축률 (예시값) */
-function savingRateFor(salary: number): number {
-  if (salary <= 3000) return 0.15
-  if (salary <= 5000) return 0.22
-  if (salary <= 7000) return 0.28
-  return 0.33
-}
-
+/** 내 연봉을 같은 연령대 평균 연봉과 비교한다. 양쪽 모두 실제 값. */
 function buildGauge({ age, salary }: RoadmapInput): GaugeResult {
-  const savingRate = savingRateFor(salary)
-  const annualSaving = Math.round(salary * savingRate)
-  // 25세부터 일했다고 가정한 단순 누적(복리 미반영) — 어디까지나 예시
-  const yearsWorked = Math.max(0, age - 25)
-  const myEstimateAsset = annualSaving * yearsWorked
-  const avgAsset = avgAssetForAge(age)
-  const percentOfAvg = avgAsset > 0 ? Math.round((myEstimateAsset / avgAsset) * 100) : 0
-  return { avgAsset, myEstimateAsset, savingRate, annualSaving, percentOfAvg }
+  const benchmark = salaryBenchmarkForAge(age)
+  const avgSalary = toAnnualManwon(benchmark.monthlyManwon)
+  const percentOfAvg = avgSalary > 0 ? Math.round((salary / avgSalary) * 100) : 0
+  return {
+    bracketLabel: benchmark.label,
+    mySalary: salary,
+    avgSalary,
+    avgMonthly: benchmark.monthlyManwon,
+    percentOfAvg,
+  }
 }
 
 /**
