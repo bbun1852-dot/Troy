@@ -92,7 +92,7 @@ export default function Privacy() {
           <p>
             개인정보 처리에 관한 문의는 아래로 연락해 주세요.
             <br />
-            운영자: [운영자명] · 이메일: [contact@your-domain.com]
+            운영자: Troy · 이메일: bbun1852@gmail.com
           </p>
         </section>
 
